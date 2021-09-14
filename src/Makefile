@@ -72,6 +72,7 @@ else
 endif
 
   VERSIONTAG = $(subst wip.,wip,$(LABEL).$(GIT_REVISION))
+  VERSIONPLIST = $(shell echo $(VERSIONTAG) | cut -d- -f1)
 
   CFLAGS_CACHE = $(OBJDIR)/.cflags.cache
 
@@ -932,8 +933,8 @@ $(MACAPPEXE) : $(BIN)
 	cp Grafx2.icns Grafx2.app/Contents/Resources
 	cp ../share/grafx2/gfx2.png Grafx2.app/Contents/Resources
 	mkdir -p Grafx2.app/Contents/Resources/English.lproj
-	cat Info.plist | sed -e 's/Grafx2 version [.0-9]*/Grafx2 version $(VERSIONTAG)/' > Grafx2.app/Contents/Info.plist
-	iconv -f UTF-16BE English.lproj/InfoPlist.strings | sed -e 's/Grafx2 version [.0-9]*/Grafx2 version $(VERSIONTAG)/' | iconv -t UTF-16BE > Grafx2.app/Contents/Resources/English.lproj/InfoPlist.strings
+	cat Info.plist | sed -e 's/GRAFX2_VERSION/$(VERSIONPLIST)/' > Grafx2.app/Contents/Info.plist
+	iconv -f UTF-16BE English.lproj/InfoPlist.strings | sed -e 's/GRAFX2_VERSION/$(VERSIONPLIST)/' | iconv -t UTF-16BE > Grafx2.app/Contents/Resources/English.lproj/InfoPlist.strings
 	cp -r ../share/grafx2/fonts Grafx2.app/Contents/Resources
 	cp -r ../share/grafx2/skins Grafx2.app/Contents/Resources
 	cp -r ../share/grafx2/gfx2def.ini Grafx2.app/Contents/Resources
