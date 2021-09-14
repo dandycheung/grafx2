@@ -929,10 +929,10 @@ $(MACAPPEXE) : $(BIN)
 	mkdir -p Grafx2.app/Contents/Resources/scripts/samples/palette
 	mkdir -p Grafx2.app/Contents/Resources/scripts/samples/picture
 	echo 'APPL????' > Grafx2.app/Contents/PkgInfo
-	cp Info.plist Grafx2.app/Contents
 	cp Grafx2.icns Grafx2.app/Contents/Resources
 	cp ../share/grafx2/gfx2.png Grafx2.app/Contents/Resources
 	mkdir -p Grafx2.app/Contents/Resources/English.lproj
+	cat Info.plist | sed -e 's/Grafx2 version [.0-9]*/Grafx2 version $(VERSIONTAG)/' > Grafx2.app/Contents/Info.plist
 	iconv -f UTF-16BE English.lproj/InfoPlist.strings | sed -e 's/Grafx2 version [.0-9]*/Grafx2 version $(VERSIONTAG)/' | iconv -t UTF-16BE > Grafx2.app/Contents/Resources/English.lproj/InfoPlist.strings
 	cp -r ../share/grafx2/fonts Grafx2.app/Contents/Resources
 	cp -r ../share/grafx2/skins Grafx2.app/Contents/Resources
