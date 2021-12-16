@@ -64,7 +64,7 @@ T_Fileselector_item * Add_element_to_list(T_Fileselector *list, const char * ful
 
   if (list->First!=NULL)
     list->First->Previous=temp_item;
-    
+
   // Put new element at the beginning
   list->First=temp_item;
   return temp_item;
@@ -163,7 +163,7 @@ char * Format_filename(const char * fname, word max_length, int type)
   // safety
   if (max_length>40)
     max_length=40;
-  
+
   if (strcmp(fname,PARENT_DIR)==0)
   {
     strcpy(result,"\x11 PARENT DIRECTORY");
@@ -179,7 +179,7 @@ char * Format_filename(const char * fname, word max_length, int type)
     for (c=0; c<max_length-1; c++)
       result[c]=' ';
     result[c]='\0';
-    
+
     for (c=0;fname[c]!='\0' && c < max_length-1;c++)
       result[c]=fname[c];
     // A special character indicates the filename is truncated
@@ -192,9 +192,9 @@ char * Format_filename(const char * fname, word max_length, int type)
     for (c = 0; c<max_length-1; c++)
       result[c]=' ';
     result[c]='\0';
-       
+
     result[max_length-5]='.';
-    
+
     // Look for the last dot in filename
     pos_last_dot = Position_last_dot(fname);
 
