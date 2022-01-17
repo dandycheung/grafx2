@@ -851,7 +851,7 @@ SKINS = skin_classic.png skin_modern.png skin_DPaint.png \
         font_Classic.png font_Fun.png font_Fairlight.png \
         font_Melon.png font_DPaint.png \
         skin_scenish.png font_Seen.png skin_Aurora.png \
-        skin_chrisfx.png
+        skin_chrisfx.png skin_black.png skin_klin.png
 SKIN_FILES = $(addprefix ../share/grafx2/skins/,$(SKINS))
 SKIN_FILES += $(wildcard ../share/grafx2/skins/unicode_*)
 
