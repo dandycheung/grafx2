@@ -380,7 +380,10 @@ byte Readline_ex_unicode(word x_pos, word y_pos, char * str, word * str_unicode,
   else
   {
     int int_pos = ((Mouse_X-Window_pos_X)/Menu_factor_X - x_pos) >> 3;
-    position = (int_pos >= 0 && int_pos <= 255) ? (byte)int_pos : 255;
+    if (Mouse_K==LEFT_SIDE)
+        position = (int_pos >= 0 && int_pos <= 255) ? (byte)int_pos : 255;
+    else
+        position = 255; // always edit from the tail if using hotkey
 
     if (input_type==INPUT_TYPE_INTEGER && str[0]!='\0')
       snprintf(str,10,"%d",atoi(str)); // align left
