@@ -539,7 +539,7 @@ byte Readline_ex_unicode(word x_pos, word y_pos, char * str, word * str_unicode,
     // pad the right side of visible area with spaces to erase any garbage
     padding = visible_size - Unicode_strlen(display_string_unicode);
     while (padding > 0) {
-        Unicode_strlcat(display_string_unicode, " ", 1);
+        Unicode_char_strlcat(display_string_unicode, " ", 1);
         padding--;
     }
 
