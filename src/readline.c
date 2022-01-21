@@ -570,6 +570,11 @@ byte Readline_ex_unicode(word x_pos, word y_pos, char * str, word * str_unicode,
     Wait_end_of_click();
     Hide_cursor();
   }
+  else
+  {
+    // discard hotkey used to activate the button
+    Get_input(0);
+  }
 
   while ((input_key!=KEY_RETURN) && (input_key!=KEY_ESC))
   {
