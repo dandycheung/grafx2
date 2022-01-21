@@ -20,13 +20,16 @@ tests:
 checkversions:
     stage: test
     allow_failure: true
+    before_script:
+        - apt-get update -qq
+        - apt-get install -y -qq jq
     script:
         - "make -C 3rdparty/ checkversions && test ! -f 3rdparty/check-version-failed || exit 1"
 
 job_linux:
     stage: build
     before_script:
-        - apt-get update -qq && apt-get install -y -qq zip
+        - apt-get update -qq && apt-get install -y -qq zip jq
         - apt-get install -y -qq libsdl1.2-dev libpng-dev libsdl-ttf2.0-dev libsdl-image1.2-dev liblua5.3-dev
         - apt-get install -y -qq libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev doxygen graphviz
     script:
@@ -61,7 +64,7 @@ pages:
 job_win32:
     stage: build
     before_script:
-        - apt-get update -qq && apt-get install -y -qq zip dos2unix gpg
+        - apt-get update -qq && apt-get install -y -qq zip dos2unix gpg jq
         - apt-get install -y -qq gcc-mingw-w64-i686 g++-mingw-w64-i686 mingw-w64-tools nsis
     script:
         - "WIN32CROSS=1 make 3rdparty -j2 || exit 1"
@@ -86,7 +89,7 @@ job_win32:
 job_atari:
     stage: build
     before_script:
-        - apt-get update -qq && apt-get install -y -qq zip dos2unix lsb-release gpg
+        - apt-get update -qq && apt-get install -y -qq zip dos2unix lsb-release gpg jq
         - "sh ./.install-cross-mint.sh"
     script:
         - "ATARICROSS=1 make 3rdparty -j2 || exit 1"
