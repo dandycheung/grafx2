@@ -527,7 +527,7 @@ byte Readline_ex_unicode(word x_pos, word y_pos, char * str, word * str_unicode,
       size = 255;
     memcpy(initial_string_unicode, str_unicode, 2*(size+1));
     if (position >= size)
-      position = (byte)((size<max_size) ? size : size-1);
+      position = (byte)((size <= max_size) ? size : size - 1);
     if (position-offset>=visible_size)
       offset=position-visible_size+1;
     // copy only part of the string if it is too long
@@ -553,7 +553,7 @@ byte Readline_ex_unicode(word x_pos, word y_pos, char * str, word * str_unicode,
     if (size > 255)
       size = 255;
     if (position >= size)
-      position = (byte)((size<max_size) ? size : size-1);
+      position = (byte)((size<=max_size) ? size : size-1);
     if (position-offset>=visible_size)
       offset=position-visible_size+1;
     // copy only part of the string if it is too long
@@ -755,7 +755,7 @@ byte Readline_ex_unicode(word x_pos, word y_pos, char * str, word * str_unicode,
           // ce qui augmente la taille de la chaine
           size++;
           // et qui risque de déplacer le curseur vers la droite
-          if (size<max_size)
+          if (size <= max_size)
           {
             position++;
             if (position-offset>=visible_size)
@@ -798,21 +798,24 @@ byte Readline_ex_unicode(word x_pos, word y_pos, char * str, word * str_unicode,
       case KEY_LEFT : // Gauche
             if (position>0)
             {
+              char at_end_of_string;
+              if (str_unicode != NULL)
+                at_end_of_string = (str_unicode[position] == '\0');
+              else
+                at_end_of_string = (str[position] == '\0');
               // Effacement de la chaîne
               if (position==size)
                 Screen_FillRect((window_x+(x_pos*Menu_factor_X))*Pixel_width, (window_y+(y_pos*Menu_factor_Y))*Pixel_height,
                   (visible_size*(Menu_factor_X<<3))*Pixel_width, (Menu_factor_Y<<3)*Pixel_height, BACKGROUND_COLOR);              position--;
-              if (offset > 0 && (position == 0 || position < (offset + 1)))
+              if (offset > 0 && (position < (offset + 1) || at_end_of_string))
                 offset--;
               goto affichage;
             }
       break;
       case KEY_RIGHT : // Droite
-            if ((position<size) && (position<max_size-1))
+            if ((position < size) && (position < max_size))
             {
               position++;
-              //if (position > visible_size + offset - 2)
-              //if (offset + visible_size < max_size && (position == size || (position > visible_size + offset - 2)))
               if (str_unicode != NULL)
               {
                 if (display_string_unicode[position-offset]==(byte)RIGHT_TRIANGLE_CHARACTER || position-offset>=visible_size)
@@ -850,8 +853,15 @@ byte Readline_ex_unicode(word x_pos, word y_pos, char * str, word * str_unicode,
 
         if (position > 0)
         {
+          char at_end_of_string;
+          if (str_unicode != NULL)
+            at_end_of_string = (str_unicode[position] == '\0');
+          else
+            at_end_of_string = (str[position] == '\0');
           position--;
-          if (offset > 0 && (position == 0 || position < (offset + 1)))
+          if (offset > 0 && ((position < (offset + 2)) ||
+                at_end_of_string ||
+                !(display_string[visible_size-1]==RIGHT_TRIANGLE_CHARACTER)))
             offset--;
           if (str_unicode != NULL)
             Remove_character_unicode(str_unicode,position);
