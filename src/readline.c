@@ -517,6 +517,8 @@ byte Readline_ex_unicode(word x_pos, word y_pos, char * str, word * str_unicode,
   strcpy(initial_string,str);
   if (str_unicode != NULL)
   {
+    int padding;
+
     size = Unicode_strlen(str_unicode);
     if (size > 255)
       size = 255;
@@ -531,6 +533,12 @@ byte Readline_ex_unicode(word x_pos, word y_pos, char * str, word * str_unicode,
       display_string_unicode[0] = (byte)LEFT_TRIANGLE_CHARACTER;
     if ((size_t)visible_size + offset + 1 < size )
       display_string_unicode[visible_size-1] = (byte)RIGHT_TRIANGLE_CHARACTER;
+    // pad the right side of visible area with spaces to erase any garbage
+    padding = visible_size - Unicode_strlen(display_string_unicode);
+    while (padding > 0) {
+        Unicode_strlcat(display_string_unicode, " ", 1);
+        padding--;
+    }
 
     Display_whole_string_unicode(window_x+(x_pos*Menu_factor_X),window_y+(y_pos*Menu_factor_Y),display_string_unicode,position - offset);
   }
