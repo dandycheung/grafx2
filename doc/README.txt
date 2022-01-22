@@ -6,7 +6,7 @@ _/    _/  _/        _/    _/    _/        _/  _/      _/
 
 GrafX2 - The Ultimate 256-color bitmap paint program
 Copyright (C)1996-2001 Sunset Design (G.Dorme & K.Maritaud)
-Copyright (C)2007-2021 the Grafx2 Project Team (A.Destugues & Y.Rizoud
+Copyright (C)2007-2022 the Grafx2 Project Team (A.Destugues & Y.Rizoud
                                                 & T.Bernard)
 -------------------------------------
 
@@ -82,8 +82,9 @@ Sends greetings and glops to pouet.net : http://pouet.net/prod.php?which=51865
 === HISTORY ===
 
 Short revision history :
-  * ??/2021  2.8       Fix several crashes
+  * 03/2021  2.8       Fix several crashes
                        More Amstrad CPC file formats support
+                       Load and save SymbOS SGX files
   * 02/2020  2.7       Relative directory bookmarks
                        Many more 8bits/16bits computer formats supported
                        Joystick and mouse control rework

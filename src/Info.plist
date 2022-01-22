@@ -27,7 +27,7 @@
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright 2008-2021 the Grafx2 project team.
+	<string>Copyright 2008-2022 the Grafx2 project team.
 MacOS X version by Franck Charlet.</string>
 </dict>
 </plist>
