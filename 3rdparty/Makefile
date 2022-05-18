@@ -603,6 +603,7 @@ endif
 	cat $(LIBPNG)/LICENSE >> ../doc/README-libpng.txt
 
 $(PREFIX)/lib/libz.a:	$(ZLIB)/.ok
+	if [ "$(ZLIB)" = "zlib-1.2.12" ]; then cd $(ZLIB) ; curl https://github.com/madler/zlib/commit/05796d3d8d5546cf1b4dfe2cd72ab746afae505d.patch | patch -p1 -N || true ; fi
 ifdef WIN32
 	cd $(ZLIB) && $(MAKE) -fwin32/Makefile.gcc PREFIX=$(shell echo $(CC) | sed 's/^\(.*\)gcc/\1/') LOC="$(LDFLAGS) $(CFLAGS)"
 	cd $(ZLIB) && INCLUDE_PATH=$(PREFIX)/include LIBRARY_PATH=$(PREFIX)/lib BINARY_PATH=$(PREFIX)/bin \
