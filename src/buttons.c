@@ -761,8 +761,8 @@ const T_Lookup Lookup_AutoRes[] = {
 };
 
 const T_Lookup Lookup_Coords[] = {
+  {"Absolute",0},
   {"Relative",1},
-  {"Absolute",2},
   {NULL,-1},
 };
 
