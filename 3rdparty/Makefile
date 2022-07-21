@@ -70,9 +70,9 @@ SDL2IMAGEVER = $(LATESTSDL2IMAGEVER)
 SDL2IMAGE = SDL2_image-$(SDL2IMAGEVER)
 SDL2IMAGEARCH = $(SDL2IMAGE).tar.gz
 SDL2IMAGESIG = $(SDL2IMAGEARCH).sig
-SDL2IMAGEURL = https://www.libsdl.org/projects/SDL_image/release/$(SDL2IMAGEARCH)
+SDL2IMAGEURL = https://github.com/libsdl-org/SDL_image/releases/download/release-$(SDL2IMAGEVER)/$(SDL2IMAGEARCH)
 SDL2IMAGESIGURL = $(SDL2IMAGEURL).sig
-LATESTSDL2IMAGEVER = $(shell curl -s -S https://www.libsdl.org/projects/SDL_image/|grep release/|grep .tar.gz |head -n1|sed 's/.*SDL2_image-\([0-9.]*\).tar.gz.*/\1/')
+LATESTSDL2IMAGEVER := $(shell curl -s -S https://api.github.com/repos/libsdl-org/SDL_image/releases | jq -r '.[] | select (.prerelease == false and .draft == false) | .name' | head -n1)
 SDL2TTFVER = $(LATESTSDL2TTFVER)
 SDL2TTF = SDL2_ttf-$(SDL2TTFVER)
 SDL2TTFARCH = $(SDL2TTF).tar.gz
