@@ -77,9 +77,9 @@ SDL2TTFVER = $(LATESTSDL2TTFVER)
 SDL2TTF = SDL2_ttf-$(SDL2TTFVER)
 SDL2TTFARCH = $(SDL2TTF).tar.gz
 SDL2TTFSIG = $(SDL2TTFARCH).sig
-SDL2TTFURL = https://www.libsdl.org/projects/SDL_ttf/release/$(SDL2TTFARCH)
+SDL2TTFURL = https://github.com/libsdl-org/SDL_ttf/releases/download/release-$(SDL2TTFVER)/$(SDL2TTFARCH)
 SDL2TTFSIGURL = $(SDL2TTFURL).sig
-LATESTSDL2TTFVER = $(shell curl -s -S https://api.github.com/repos/libsdl-org/SDL_ttf/tags | jq -r .[0].name|sed 's/.*-\([0-9.]*\)/\1/')
+LATESTSDL2TTFVER := $(shell curl -s -S https://api.github.com/repos/libsdl-org/SDL_ttf/tags | jq -r .[0].name|sed 's/.*-\([0-9.]*\)/\1/')
 LIBPNGVER = 1.6.37
 LIBPNG = libpng-$(LIBPNGVER)
 LIBPNGARCH = $(LIBPNG).tar.gz
@@ -397,7 +397,8 @@ endif
 	echo " - $(FREETYPE)" >> ../doc/README-SDL2_ttf.txt
 	echo "" >> ../doc/README-SDL2_ttf.txt
 	echo "License :" >> ../doc/README-SDL2_ttf.txt
-	cat $(SDL2TTF)/COPYING.txt | tr -d "\r" >> ../doc/README-SDL2_ttf.txt
+	if [ -f "$(SDL2TTF)/COPYING.txt" ] ; then cat "$(SDL2TTF)/COPYING.txt" | tr -d "\r" >> ../doc/README-SDL2_ttf.txt ; fi
+	if [ -f "$(SDL2TTF)/LICENSE.txt" ] ; then cat "$(SDL2TTF)/LICENSE.txt" | tr -d "\r" >> ../doc/README-SDL2_ttf.txt ; fi
 
 ifdef WIN32
 $(PREFIX)/lib/libSDLmain.a:	archives/$(SDLDEVEL)
