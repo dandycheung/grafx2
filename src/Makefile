@@ -524,7 +524,7 @@ endif
       COPT += -D__no_pnglib__ -D__no_tifflib__
       else
       COPT += $(shell PKG_CONFIG_LIBDIR=$(CROSS_PKG_CONFIG_PATH) $(CROSS_PKGCONFIG) --cflags libpng || echo "-D__no_pnglib__" )
-      LOPT += $(shell PKG_CONFIG_LIBDIR=$(CROSS_PKG_CONFIG_PATH) $(CROSS_PKGCONFIG) --libs libpng libtiff-4)
+      LOPT += $(shell PKG_CONFIG_LIBDIR=$(CROSS_PKG_CONFIG_PATH) $(CROSS_PKGCONFIG) --libs libpng libtiff-4 zlib)
       endif
       LUALOPT = -llua
       COPT += $(LUACOPT)
