@@ -2299,15 +2299,21 @@ byte Button_Load_or_Save(T_Selector_settings *settings, byte load, T_IO_Context 
         {
           char * current_dir;
           Display_cursor();
+#if !defined (__amigaos__)
           GFX2_Log(GFX2_WARNING, "cannot chdir to \"%s\" !\n", directory_to_change_to);
+#endif
           current_dir = Get_current_directory(NULL, NULL, 0);
+#if !defined (__amigaos__)
           GFX2_Log(GFX2_WARNING, "Current directory is \"%s\"\n", current_dir);
+#endif
           free(current_dir);
           // restore Selector_filename
           free(Selector->filename);
           Selector->filename = save_filename; // steal heap buffer
           save_filename = NULL;
+#if !defined (__amigaos__)
           Error(0);
+#endif
         }
         directory_to_change_to = NULL;
       }

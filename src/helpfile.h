@@ -420,7 +420,7 @@ static const T_Help_table helptable_credits[] =
   HELP_TEXT ("")
   HELP_BOLD ("              AMIGA OS 3 PORT")
   HELP_TEXT ("")
-  HELP_TEXT ("  Artur Jarosik")
+  HELP_TEXT ("  Artur Jarosik (Arczi)")
   HELP_TEXT ("")
   HELP_BOLD ("              AMIGA OS 4 PORT")
   HELP_TEXT ("")

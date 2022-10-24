@@ -1072,14 +1072,12 @@ char * Get_current_directory(char * buf, word * * unicode, size_t size)
   }
   free(cur_dir);
   return buf;
-#elif defined (__amigaos__)
-  char * ret = "";
-  if (unicode != NULL)
-    *unicode = NULL; // no unicode support
 #else
   char * ret = getcwd(buf, size);
+#if !defined (__amigaos__)
   if (ret == NULL)
     GFX2_Log(GFX2_ERROR, "getcwd(%p, %lu) failed !\n", buf, (unsigned long)size);
+#endif
 #ifdef ENABLE_FILENAMES_ICONV
   if (ret != NULL && unicode != NULL)
   {
