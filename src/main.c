@@ -89,9 +89,7 @@
 #include <sys/param.h>
 #endif
 
-#if defined(__macosx__)
-#include <machine/endian.h>
-#elif defined(__SWITCH__)
+#if defined(__macosx__) || defined(__SWITCH__) || defined(__amigaos__)
 #include <machine/endian.h>
 #elif defined(__FreeBSD__)
 #include <sys/endian.h>
@@ -1307,6 +1305,7 @@ void Program_shutdown(void)
       if (return_code)
         Error(return_code);
       return_code=Save_INI(&Config);
+
       if (return_code)
         Error(return_code);
     }

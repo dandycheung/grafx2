@@ -899,7 +899,7 @@ void Button_Stats(int btn)
   // Display free space
   if (mem_size != 0)
   {
-#if defined(__AROS__)
+#if defined(__AROS__) || defined(__amigaos__)
     char *colon = strchr(Main.selector.Directory, ':');
     int len = strlen(Main.selector.Directory);
     if (colon)

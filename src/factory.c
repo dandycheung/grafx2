@@ -2044,7 +2044,7 @@ int L_Run(lua_State* L)
   saved_directory = Get_current_directory(NULL, NULL, 0);
 
   full_path = strdup(script_arg);
-  #if defined (__AROS__)
+  #if defined (__AROS__) || defined(__amigaos__)
   // Convert path written on Linux/Windows norms to AROS norms :
   // Each element like ../ and ..\ is replaced by /
   // Each path separator \ is replaced by /

@@ -725,6 +725,7 @@ void Define_icon(void)
 
 #endif
 
+#if !defined (__amigaos__)
   // General version: Load icon from file
   {
 #if defined(USE_SDL)
@@ -735,9 +736,11 @@ void Define_icon(void)
     // gfx2.gif : 32x32
     // gfx2.png : 48x48
     icon_path = Filepath_append_to_dir(Data_directory, "gfx2.png");
-    icon = IMG_Load(icon_path);
+      icon = IMG_Load(icon_path);
     if (icon == NULL)
+    {
       GFX2_Log(GFX2_WARNING, "Failed to load icon %s\n", icon_path);
+    }
     else
     {
       Uint32 pink;
@@ -780,6 +783,7 @@ void Define_icon(void)
     }
     free(icon_path);
   }
+#endif
 }
 
 void Set_mouse_position(void)

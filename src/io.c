@@ -270,7 +270,7 @@ char * Find_last_separator(const char * str)
     if (*str == PATH_SEPARATOR[0]
 #if defined(__WIN32__) || defined(WIN32)
      || *str == '/'
-#elif __AROS__
+#elif defined(__AROS__) || defined(__amigaos__)
      || *str == ':'
 #endif
      )
@@ -285,7 +285,7 @@ word * Find_last_separator_unicode(const word * str)
     if (*str == (byte)PATH_SEPARATOR[0]
 #if defined(__WIN32__) || defined(WIN32)
      || *str == '/'
-#elif __AROS__
+#elif defined(__AROS__) || defined(__amigaos__)
      || *str == ':'
 #endif
      )
@@ -302,7 +302,7 @@ char * Filepath_append_to_dir(const char * dir, const char * filename)
   if (dir[len-1] == PATH_SEPARATOR[0]
 #if defined(__WIN32__) || defined(WIN32)
      || dir[len-1] == '/'
-#elif __AROS__
+#elif defined(__AROS__) || defined(__amigaos__)
      || dir[len-1] == ':'
 #endif
     )
@@ -400,7 +400,7 @@ void Append_path(char *path, const char *filename, char *reverse_path)
     {
       if (reverse_path)
         strcpy(reverse_path, separator_pos+1);
-      #if defined(__AROS__)
+      #if defined(__AROS__) || defined(__amigaos__)
       // Don't strip away the colon
       if (*separator_pos == ':') *(separator_pos+1)='\0';
       else *separator_pos='\0';
@@ -431,7 +431,7 @@ void Append_path(char *path, const char *filename, char *reverse_path)
     if (len && (strcmp(path+len-1,PATH_SEPARATOR) 
     #ifdef __WIN32__
       && path[len-1]!='/'
-    #elif __AROS__
+    #elif defined(__AROS__) || defined(__amigaos__)
       && path[len-1]!=':' // To avoid paths like volume:/dir
     #endif
       ))
@@ -1072,6 +1072,10 @@ char * Get_current_directory(char * buf, word * * unicode, size_t size)
   }
   free(cur_dir);
   return buf;
+#elif defined (__amigaos__)
+  char * ret = "";
+  if (unicode != NULL)
+    *unicode = NULL; // no unicode support
 #else
   char * ret = getcwd(buf, size);
   if (ret == NULL)

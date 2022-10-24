@@ -28,6 +28,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
+#include <setjmp.h>
 #include <png.h>
 #if !defined(PNG_HAVE_PLTE)
 #define PNG_HAVE_PLTE 0x02

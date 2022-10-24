@@ -19,7 +19,7 @@
 */
 #ifndef GFX2MEM_H_DEFINED
 #define GFX2MEM_H_DEFINED
-
+#include <sys/types.h>
 /// malloc() memory and log in case of error
 void * GFX2_malloc_and_log(size_t size, const char * file, unsigned line);
 

@@ -650,7 +650,7 @@ T_Key_config ConfigKey[NB_SHORTCUTS] = {
   true,
   KEY_b, // B
   #if defined(__amigaos4__) || defined(__AROS__) || defined(__MORPHOS__) || defined(__amigaos__)
-  KEY_C|GFX2_MOD_META // Right-Amiga + C
+  KEY_c|GFX2_MOD_META // Right-Amiga + C
   #else
   0
   #endif
@@ -887,7 +887,7 @@ T_Key_config ConfigKey[NB_SHORTCUTS] = {
   true,
   KEY_F2, // F2
   #if defined(__amigaos4__) || defined(__AROS__) || defined(__MORPHOS__) || defined(__amigaos__)
-  KEY_A|GFX2_MOD_META // Right-Amiga + A
+  KEY_a|GFX2_MOD_META // Right-Amiga + A
   #else
   0
   #endif
@@ -900,7 +900,7 @@ T_Key_config ConfigKey[NB_SHORTCUTS] = {
   true,
   KEY_F2|GFX2_MOD_SHIFT, // Shift + F2
   #if defined(__amigaos4__) || defined(__AROS__) || defined(__MORPHOS__) || defined(__amigaos__)
-  KEY_S|GFX2_MOD_META // Right-Amiga + S
+  KEY_s|GFX2_MOD_META // Right-Amiga + S
   #else
   0
   #endif
@@ -913,7 +913,7 @@ T_Key_config ConfigKey[NB_SHORTCUTS] = {
   true,
   KEY_F3, // F3
   #if defined(__amigaos4__) || defined(__AROS__) || defined(__MORPHOS__) || defined(__amigaos__)
-  KEY_O|GFX2_MOD_META // Right-Amiga + O
+  KEY_o|GFX2_MOD_META // Right-Amiga + O
   #else
   0
   #endif
@@ -963,7 +963,7 @@ T_Key_config ConfigKey[NB_SHORTCUTS] = {
   #elif defined (__WIZ__)
     (KEY_JOYBUTTON+JOY_BUTTON_L)
   #elif defined(__amigaos4__) || defined(__AROS__) || defined(__MORPHOS__) || defined(__amigaos__)
-  KEY_Z|GFX2_MOD_META // Right-Amiga + Z
+  KEY_z|GFX2_MOD_META // Right-Amiga + Z
   #else
   0
   #endif

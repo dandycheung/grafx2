@@ -165,7 +165,7 @@ char * Get_data_directory(const char * program_dir)
   #if defined(__macosx__)
     // On MacOSX,  it is stored in a special folder:
     to_append = "Contents/Resources/";
-  #elif defined (__GP2X__) || defined (__gp2x__) || defined (__WIZ__) || defined (__CAANOO__) || defined(GCWZERO) || defined(__AROS__) || defined(__ANDROID__)
+  #elif defined (__GP2X__) || defined (__gp2x__) || defined (__WIZ__) || defined (__CAANOO__) || defined(GCWZERO) || defined(__AROS__) || defined(__ANDROID__) || defined(__amigaos__) 
     // On GP2X, AROS and Android, executable is not in bin/
     to_append = "data/";
   #elif defined (__MINT__)
@@ -212,7 +212,7 @@ char * Get_data_directory(const char * program_dir)
 char * Get_config_directory(const char * program_dir)
 {
   // AmigaOS4 provides the PROGDIR: alias to the directory where the executable is.
-  #if defined(__amigaos4__) || defined(__AROS__)
+  #if defined(__amigaos4__) || defined(__AROS__) || defined(__amigaos__)
     return strdup("PROGDIR:");
   // GP2X
   #elif defined(__GP2X__) || defined(__WIZ__) || defined(__CAANOO__)
